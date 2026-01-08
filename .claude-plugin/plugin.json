@@ -22,6 +22,16 @@
     }
   },
   "hooks": {
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/server/notify-permission.sh"
+          }
+        ]
+      }
+    ],
     "Stop": [
       {
         "hooks": [
