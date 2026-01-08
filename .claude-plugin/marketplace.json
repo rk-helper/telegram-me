@@ -1,0 +1,12 @@
+{
+  "name": "telegram-me",
+  "owner": {
+    "name": "rk-helper"
+  },
+  "plugins": [
+    {
+      "name": "telegram-me",
+      "source": "./"
+    }
+  ]
+}
