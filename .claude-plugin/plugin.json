@@ -16,6 +16,7 @@
       "args": ["-c", "cd ${CLAUDE_PLUGIN_ROOT}/server && npm install --silent && npx tsx src/index.ts"],
       "env": {
         "CALLME_TELEGRAM_BOT_TOKEN": "${CALLME_TELEGRAM_BOT_TOKEN}",
+        "CALLME_TELEGRAM_CHAT_ID": "${CALLME_TELEGRAM_CHAT_ID}",
         "CALLME_RESPONSE_TIMEOUT_MS": "${CALLME_RESPONSE_TIMEOUT_MS:-180000}"
       }
     }

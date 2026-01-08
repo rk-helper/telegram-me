@@ -7,6 +7,7 @@
 export interface TelegramConfig {
   botToken: string;
   responseTimeoutMs: number;
+  chatId?: number;
 }
 
 interface TelegramMessage {
@@ -31,6 +32,9 @@ export class TelegramBot {
   constructor(config: TelegramConfig) {
     this.config = config;
     this.baseUrl = `https://api.telegram.org/bot${config.botToken}`;
+    if (config.chatId) {
+      this.activeChatId = config.chatId;
+    }
   }
 
   /**

@@ -17,6 +17,7 @@ interface ConversationState {
 export interface MessageManagerConfig {
   telegramBotToken: string;
   responseTimeoutMs: number;
+  telegramChatId?: number;
 }
 
 export function loadMessageManagerConfig(): MessageManagerConfig {
@@ -24,9 +25,14 @@ export function loadMessageManagerConfig(): MessageManagerConfig {
     throw new Error('Missing CALLME_TELEGRAM_BOT_TOKEN');
   }
 
+  const chatId = process.env.CALLME_TELEGRAM_CHAT_ID
+    ? parseInt(process.env.CALLME_TELEGRAM_CHAT_ID, 10)
+    : undefined;
+
   return {
     telegramBotToken: process.env.CALLME_TELEGRAM_BOT_TOKEN,
     responseTimeoutMs: parseInt(process.env.CALLME_RESPONSE_TIMEOUT_MS || '180000', 10),
+    telegramChatId: chatId,
   };
 }
 
@@ -41,6 +47,7 @@ export class MessageManager {
     this.telegram = new TelegramBot({
       botToken: config.telegramBotToken,
       responseTimeoutMs: config.responseTimeoutMs,
+      chatId: config.telegramChatId,
     });
   }
 
