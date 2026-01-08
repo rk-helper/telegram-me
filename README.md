@@ -139,6 +139,12 @@ bun run dev
 
 ---
 
+## Acknowledgments
+
+Inspired by [call-me](https://github.com/ZeframLou/call-me) by ZeframLou - a similar plugin that lets Claude call you on the phone. If you prefer voice calls over text messages, check it out!
+
+---
+
 ## License
 
 MIT
