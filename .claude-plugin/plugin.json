@@ -26,7 +26,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Evaluate if Claude should message the user on Telegram to report progress or ask for what to do next. If yes, use the send_message tool."
+            "prompt": "ALWAYS use the send_message tool to message the user on Telegram. Report what was completed and ask what to do next. This is required - do not skip this step."
           }
         ]
       }
