@@ -34,7 +34,7 @@ Add to `~/.claude/settings.json`:
 ### 3. Install Plugin
 
 ```bash
-/plugin marketplace add ZeframLou/telegram-me
+/plugin marketplace add rk-helper/telegram-me
 /plugin install telegram-me@telegram-me
 ```
 

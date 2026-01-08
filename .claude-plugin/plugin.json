@@ -3,10 +3,10 @@
   "version": "2.0.0",
   "description": "Claude messages you on Telegram when it needs your input or wants to report progress.",
   "author": {
-    "name": "ZeframLou",
-    "url": "https://github.com/ZeframLou"
+    "name": "rk-helper",
+    "url": "https://github.com/rk-helper"
   },
-  "repository": "https://github.com/ZeframLou/telegram-me",
+  "repository": "https://github.com/rk-helper/telegram-me",
   "license": "MIT",
   "keywords": ["telegram", "messaging", "input"],
   "skills": "./skills",
