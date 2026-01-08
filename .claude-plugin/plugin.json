@@ -1,0 +1,35 @@
+{
+  "name": "telegram-me",
+  "version": "2.0.0",
+  "description": "Claude messages you on Telegram when it needs your input or wants to report progress.",
+  "author": {
+    "name": "ZeframLou",
+    "url": "https://github.com/ZeframLou"
+  },
+  "repository": "https://github.com/ZeframLou/telegram-me",
+  "license": "MIT",
+  "keywords": ["telegram", "messaging", "input"],
+  "skills": "./skills",
+  "mcpServers": {
+    "telegram-me": {
+      "command": "bash",
+      "args": ["-c", "cd ${CLAUDE_PLUGIN_ROOT}/server && npm install --silent && npx tsx src/index.ts"],
+      "env": {
+        "CALLME_TELEGRAM_BOT_TOKEN": "${CALLME_TELEGRAM_BOT_TOKEN}",
+        "CALLME_RESPONSE_TIMEOUT_MS": "${CALLME_RESPONSE_TIMEOUT_MS:-180000}"
+      }
+    }
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Evaluate if Claude should message the user on Telegram to report progress or ask for what to do next. If yes, use the send_message tool."
+          }
+        ]
+      }
+    ]
+  }
+}
