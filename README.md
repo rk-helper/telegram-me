@@ -4,7 +4,7 @@
 
 Start a task, walk away. Telegram pings you when Claude is done, stuck, or needs a decision.
 
-- **Dead simple** - Just one env var: your bot token
+- **Dead simple** - Just two env vars: bot token and chat ID
 - **Multi-turn conversations** - Chat through decisions naturally
 - **No dependencies** - Just Telegram, nothing else
 - **Free** - Telegram API has no fees
@@ -19,19 +19,29 @@ Start a task, walk away. Telegram pings you when Claude is done, stuck, or needs
 2. Send `/newbot` and follow the prompts
 3. Copy the **Bot Token** you receive
 
-### 2. Set Environment Variable
+### 2. Get Your Chat ID
+
+1. Message your new bot (send anything like "hi")
+2. Open this URL in your browser (replace `YOUR_BOT_TOKEN`):
+   ```
+   https://api.telegram.org/botYOUR_BOT_TOKEN/getUpdates
+   ```
+3. Find `"chat":{"id":123456789}` in the response - that number is your **Chat ID**
+
+### 3. Set Environment Variables
 
 Add to `~/.claude/settings.json`:
 
 ```json
 {
   "env": {
-    "CALLME_TELEGRAM_BOT_TOKEN": "123456789:ABCdefGHIjklMNOpqrsTUVwxyz"
+    "CALLME_TELEGRAM_BOT_TOKEN": "123456789:ABCdefGHIjklMNOpqrsTUVwxyz",
+    "CALLME_TELEGRAM_CHAT_ID": "123456789"
   }
 }
 ```
 
-### 3. Install Plugin
+### 4. Install Plugin
 
 ```bash
 /plugin marketplace add rk-helper/telegram-me
@@ -112,6 +122,7 @@ await end_conversation({
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
 | `CALLME_TELEGRAM_BOT_TOKEN` | Yes | - | Bot token from BotFather |
+| `CALLME_TELEGRAM_CHAT_ID` | Yes | - | Your Telegram chat ID |
 | `CALLME_RESPONSE_TIMEOUT_MS` | No | `180000` | Response timeout (3 min) |
 
 ---
