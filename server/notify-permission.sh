@@ -6,8 +6,19 @@ INPUT=$(cat)
 TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // "unknown tool"')
 TOOL_INPUT=$(echo "$INPUT" | jq -c '.tool_input // {}')
 
+# Try env vars first, then fall back to reading from settings.json
 BOT_TOKEN="${CALLME_TELEGRAM_BOT_TOKEN}"
 CHAT_ID="${CALLME_TELEGRAM_CHAT_ID}"
+
+# If env vars are empty, read from Claude settings
+if [ -z "$BOT_TOKEN" ] || [ -z "$CHAT_ID" ]; then
+  SETTINGS_FILE="$HOME/.claude/settings.json"
+  if [ -f "$SETTINGS_FILE" ]; then
+    BOT_TOKEN=$(jq -r '.env.CALLME_TELEGRAM_BOT_TOKEN // empty' "$SETTINGS_FILE")
+    CHAT_ID=$(jq -r '.env.CALLME_TELEGRAM_CHAT_ID // empty' "$SETTINGS_FILE")
+  fi
+fi
+
 TIMEOUT="${CALLME_RESPONSE_TIMEOUT_MS:-180000}"
 TIMEOUT_SEC=$((TIMEOUT / 1000))
 
